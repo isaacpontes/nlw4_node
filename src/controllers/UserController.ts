@@ -19,9 +19,9 @@ class UserController
             name, email
         });
         
-        await userRepository.save(user);
-
-        return response.json(user);
+        userRepository.save(user)
+            .then(() => response.status(201).json(user) )
+            .catch(error => response.status(400).json({ error: error }) );
     }
 }
 

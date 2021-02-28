@@ -21,9 +21,9 @@ class SurveyController
             title, description
         });
 
-        await surveyRepository.save(survey);
-
-        return response.status(201).json(survey);
+        surveyRepository.save(survey)
+            .then(() => response.status(201).json(survey) )
+            .catch(error => response.status(400).json({ error: error }) );
     }
 }
 export { SurveyController };
